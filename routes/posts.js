@@ -76,7 +76,9 @@ router.patch('/:id', (req, res) => {
 
 // Rotta bacheca destroy
 router.delete('/:id', (req, res) => {
-    res.send('eliminazione ' + req.params.id);
+    const newPosts = posts.filter(element => element.id !== parseInt(req.params.id))
+    const deletedPost = posts.find(element => element.id === parseInt(req.params.id))
+    res.json(deletedPost);
 });
 
 module.exports = router;
