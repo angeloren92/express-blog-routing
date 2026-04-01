@@ -1,11 +1,6 @@
 const express = require('express');
-const app = express();
-const port = 3000;
+const router = express.Router();
 
-// Avvio del server
-app.listen(port, () => {
-    console.log(`Server del blog in ascolto su http://localhost:${port}`);
-});
 
 // Array dei post del blog
 const posts = [
@@ -46,16 +41,8 @@ const posts = [
     }
 ];
 
-// Configurazione per servire file statici dalla cartella public
-app.use(express.static('public'));
-
-// Rotta root
-app.get('/', (req, res) => {
-    res.send('Server del mio blog');
-});
-
-// Rotta bacheca
-app.get('/bacheca', (req, res) => {
+// Rotta bacheca index
+router.get('/', (req, res) => {
     res.json({
         posts: posts,
         numeroPost: posts.length
@@ -63,32 +50,33 @@ app.get('/bacheca', (req, res) => {
 });
 
 // Rotta bacheca show
-app.get('/bacheca/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const post = posts.find(element => element.id === parseInt(req.params.id));
     if (post) {
         res.json(post);
     } else {
-        res.status(404).json({ message: 'not found'})
+        res.status(404).json({ message: 'not found' })
     }
-    res.send('dettagli' + req.params.id);
 });
 
 // Rotta bacheca store  
-app.post('/bacheca', (req, res) => {
+router.post('/', (req, res) => {
     res.send('creazione');
 });
 
 // Rotta bacheca update
-app.put('/bacheca/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     res.send('modifica integrale' + req.params.id);
 });
 
 // Rotta bacheca modify
-app.patch('/bacheca/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
     res.send('modifica parziale' + req.params.id);
 });
 
 // Rotta bacheca destroy
-app.delete('/bacheca/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     res.send('eliminazione' + req.params.id);
 });
+
+module.exports = router;
