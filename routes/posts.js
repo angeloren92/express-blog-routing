@@ -81,7 +81,7 @@ router.delete('/:id', (req, res) => {
         const postDeleted = posts.splice(index, 1)
         res.json(postDeleted);
     } else {
-        res.send('ID non trovato')
+        res.status(404).json({ message: 'not found' })
     }
 });
 
