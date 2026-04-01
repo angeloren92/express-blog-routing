@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const postsRouter = require('./routes/posts')
+const postsRouters = require('./routes/posts')
 
 // Avvio del server
 app.listen(port, () => {

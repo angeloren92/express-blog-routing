@@ -42,7 +42,7 @@ const posts = [
 ];
 
 // Rotta bacheca index
-router.get('/', (req, res) => {
+router.get('/index', (req, res) => {
     res.json({
         posts: posts,
         numeroPost: posts.length
@@ -61,22 +61,22 @@ router.get('/:id', (req, res) => {
 
 // Rotta bacheca store  
 router.post('/', (req, res) => {
-    res.send('creazione');
+    res.send('creazione ');
 });
 
 // Rotta bacheca update
 router.put('/:id', (req, res) => {
-    res.send('modifica integrale' + req.params.id);
+    res.send('modifica integrale ' + req.params.id);
 });
 
 // Rotta bacheca modify
 router.patch('/:id', (req, res) => {
-    res.send('modifica parziale' + req.params.id);
+    res.send('modifica parziale ' + req.params.id);
 });
 
 // Rotta bacheca destroy
 router.delete('/:id', (req, res) => {
-    res.send('eliminazione' + req.params.id);
+    res.send('eliminazione ' + req.params.id);
 });
 
 module.exports = router;
