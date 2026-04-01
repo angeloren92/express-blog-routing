@@ -77,8 +77,12 @@ router.patch('/:id', (req, res) => {
 // Rotta bacheca destroy
 router.delete('/:id', (req, res) => {
     const index = posts.findIndex(element => element.id === parseInt(req.params.id))
-    const postDeleted = posts.splice(index, 1)
-    res.json(postDeleted);
+    if (index !== -1) {
+        const postDeleted = posts.splice(index, 1)
+        res.json(postDeleted);
+    } else {
+        res.send('ID non trovato')
+    }
 });
 
 module.exports = router;
